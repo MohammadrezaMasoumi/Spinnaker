@@ -1,0 +1,14 @@
+version: '3'
+services:
+ halyard:
+   container_name: halyard
+   restart: always
+   image: us-docker.pkg.dev/spinnaker-community/docker/halyard:stable
+   volumes:
+      - .kube:/home/spinnaker/k8s
+      - ./halyard:/home/spinnaker/.hal
+   environment:
+      KUBECONFIG: /home/spinnaker/k8s/config
+   ports:
+    - 8084:8084
+    - 9003:9000

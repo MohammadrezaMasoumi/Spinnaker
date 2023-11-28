@@ -1,0 +1,333 @@
+currentDeployment: default
+deploymentConfigurations:
+- name: default
+  version: 1.32.0
+  providers:
+    appengine:
+      enabled: false
+      accounts: []
+    aws:
+      enabled: false
+      accounts: []
+      bakeryDefaults:
+        baseImages: []
+      defaultKeyPairTemplate: '{{name}}-keypair'
+      defaultRegions:
+      - name: us-west-2
+      defaults:
+        iamRole: BaseIAMRole
+    ecs:
+      enabled: false
+      accounts: []
+    azure:
+      enabled: false
+      accounts: []
+      bakeryDefaults:
+        templateFile: azure-linux.json
+        baseImages: []
+    dcos:
+      enabled: false
+      accounts: []
+      clusters: []
+    dockerRegistry:
+      enabled: false
+      accounts: []
+    google:
+      enabled: false
+      accounts: []
+      bakeryDefaults:
+        templateFile: gce.json
+        baseImages: []
+        zone: us-central1-f
+        network: default
+        useInternalIp: false
+    huaweicloud:
+      enabled: false
+      accounts: []
+      bakeryDefaults:
+        baseImages: []
+    kubernetes:
+      enabled: true
+      accounts:
+      - name: spin
+        requiredGroupMembership: []
+        permissions: {}
+        dockerRegistries: []
+        providerVersion: V2
+        context: kubernetes-admin@cluster.local
+        configureImagePullSecrets: true
+        cacheThreads: 1
+        namespaces: []
+        omitNamespaces: []
+        kinds: []
+        omitKinds: []
+        customResources: []
+        cachingPolicies: []
+        kubeconfigFile: /home/spinnaker/k8s/config
+        rawResourcesEndpointConfig:
+          kindExpressions: []
+          omitKindExpressions: []
+        oAuthScopes: []
+        onlySpinnakerManaged: false
+      primaryAccount: spin
+    tencentcloud:
+      enabled: false
+      accounts: []
+      bakeryDefaults:
+        baseImages: []
+    oracle:
+      enabled: false
+      accounts: []
+      bakeryDefaults:
+        templateFile: oci.json
+        baseImages: []
+    cloudfoundry:
+      enabled: false
+      accounts: []
+  deploymentEnvironment:
+    size: SMALL
+    type: Distributed
+    accountName: spin
+    imageVariant: SLIM
+    updateVersions: true
+    consul:
+      enabled: false
+    vault:
+      enabled: false
+    customSizing: {}
+    sidecars: {}
+    initContainers: {}
+    hostAliases: {}
+    affinity: {}
+    tolerations: {}
+    nodeSelectors: {}
+    gitConfig:
+      upstreamUser: spinnaker
+    livenessProbeConfig:
+      enabled: false
+    haServices:
+      clouddriver:
+        enabled: false
+        disableClouddriverRoDeck: false
+      echo:
+        enabled: false
+  persistentStorage:
+    persistentStoreType: s3
+    azs: {}
+    gcs:
+      rootFolder: front50
+      bucketLocation: ''
+    redis: {}
+    s3:
+      bucket: halyard
+      rootFolder: front50
+      pathStyleAccess: true
+      endpoint: http://api-mino.spinnaker.svc.cluster.local:9000
+      accessKeyId: Ia4Z5k6MpXxUOn5y2ZBd
+      secretAccessKey: 229bvg2FPSCnnAqGCnnuiQQutLkX6Bk9vphJj52X
+    oracle: {}
+  features:
+    chaos: false
+    mineCanary: true
+  metricStores:
+    datadog:
+      enabled: false
+      tags: []
+    prometheus:
+      enabled: false
+      add_source_metalabels: true
+    stackdriver:
+      enabled: false
+    newrelic:
+      enabled: false
+      tags: []
+    period: 30
+    enabled: false
+  notifications:
+    slack:
+      enabled: true
+      botName: MatterMoz
+      token: https://#mattermost/hooks/hjj5nw4y3788jrgckoskt9i5ir
+    twilio:
+      enabled: false
+      baseUrl: https://api.twilio.com/
+    github-status:
+      enabled: false
+  timezone: America/Los_Angeles
+  ci:
+    jenkins:
+      enabled: false
+      masters: []
+    travis:
+      enabled: false
+      masters: []
+    wercker:
+      enabled: false
+      masters: []
+    concourse:
+      enabled: false
+      masters: []
+    gcb:
+      enabled: false
+      accounts: []
+    codebuild:
+      enabled: false
+      accounts: []
+  repository:
+    artifactory:
+      enabled: false
+      searches: []
+    nexus:
+      enabled: false
+      searches: []
+  security:
+    apiSecurity:
+      ssl:
+        enabled: false
+      overrideBaseUrl: http://192.168.116.5:31307
+    uiSecurity:
+      ssl:
+        enabled: false
+      overrideBaseUrl: http://192.168.116.5:31306
+    authn:
+      oauth2:
+        enabled: false
+        client: {}
+        resource: {}
+        userInfoMapping: {}
+      saml:
+        enabled: false
+        userAttributeMapping: {}
+      ldap:
+        enabled: false
+      x509:
+        enabled: false
+      iap:
+        enabled: false
+      enabled: false
+    authz:
+      groupMembership:
+        service: EXTERNAL
+        google:
+          roleProviderType: GOOGLE
+        github:
+          roleProviderType: GITHUB
+        file:
+          roleProviderType: FILE
+        ldap:
+          roleProviderType: LDAP
+      enabled: false
+  artifacts:
+    bitbucket:
+      enabled: false
+      accounts: []
+    gcs:
+      enabled: false
+      accounts: []
+    oracle:
+      enabled: false
+      accounts: []
+    github:
+      enabled: false
+      accounts: []
+    gitlab:
+      enabled: true
+      accounts:
+      - name: git-secret
+        tokenFile: /home/spinnaker/.hal/token-git
+    gitrepo:
+      enabled: true
+      accounts:
+      - name: git-repo-real
+        tokenFile: /home/spinnaker/.hal/token-git
+        sshTrustUnknownHosts: false
+      - name: git-repo-real
+        username: mr.masoumi
+        tokenFile: /home/spinnaker/.hal/token-git
+        sshTrustUnknownHosts: false
+    http:
+      enabled: false
+      accounts: []
+    helm:
+      enabled: true
+      accounts:
+      - name: spin
+        usernamePasswordFile: /home/spinnaker/USERNAME_PASSWORD_FILE
+    s3:
+      enabled: false
+      accounts: []
+    maven:
+      enabled: false
+      accounts: []
+    templates: []
+  pubsub:
+    enabled: false
+    google:
+      enabled: false
+      pubsubType: GOOGLE
+      subscriptions: []
+      publishers: []
+  canary:
+    enabled: true
+    serviceIntegrations:
+    - name: google
+      enabled: false
+      accounts: []
+      gcsEnabled: false
+      stackdriverEnabled: false
+    - name: prometheus
+      enabled: true
+      accounts:
+      - name: prometheus
+        endpoint:
+          baseUrl: http://prometheus.istio-system.svc.cluster.local:9090
+        supportedTypes:
+        - METRICS_STORE
+    - name: datadog
+      enabled: false
+      accounts: []
+    - name: signalfx
+      enabled: false
+      accounts: []
+    - name: aws
+      enabled: false
+      accounts:
+      - name: my-minio
+        bucket: halyard
+        rootFolder: kayenta
+        endpoint: http://api-mino.spinnaker.svc.cluster.local:9000
+        accessKeyId: Ia4Z5k6MpXxUOn5y2ZBd
+        supportedTypes: []
+      - name: canary-my-minio
+        bucket: halyard
+        rootFolder: kayenta
+        endpoint: http://api-mino.spinnaker.svc.cluster.local:9000
+        accessKeyId: Ia4Z5k6MpXxUOn5y2ZBd
+        secretAccessKey: 229bvg2FPSCnnAqGCnnuiQQutLkX6Bk9vphJj52X
+        supportedTypes: []
+      s3Enabled: false
+    - name: newrelic
+      enabled: false
+      accounts: []
+    reduxLoggerEnabled: true
+    defaultMetricsAccount: prometheus
+    defaultStorageAccount: my-minio
+    defaultJudge: NetflixACAJudge-v1.0
+    defaultMetricsStore: prometheus
+    stagesEnabled: true
+    templatesEnabled: true
+    showAllConfigsEnabled: true
+  spinnaker:
+    extensibility:
+      plugins: {}
+      repositories: {}
+  webhook:
+    trust:
+      enabled: false
+  stats:
+    enabled: false
+    endpoint: https://stats.spinnaker.io
+    instanceId: 01H8XDP2DSFXMGVFPJ7ZD6MXDR
+    deploymentMethod: {}
+    connectionTimeoutMillis: 3000
+    readTimeoutMillis: 5000
